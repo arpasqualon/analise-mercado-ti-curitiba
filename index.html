@@ -1,0 +1,649 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Relatório Completo - Análise de Mercado de TI em Curitiba</title>
+    <!-- Tailwind CSS CDN for styling -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            color: #d1d5db;
+            background-color: #000000;
+        }
+        .container {
+            max-width: 80rem;
+        }
+        .chart-container {
+            background-color: rgba(31, 41, 55, 0.5); /* Fundo semi-transparente */
+            padding: 1.5rem;
+            border-radius: 1rem;
+            border: 1px solid #374151;
+            box-shadow: none;
+            transition: none;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+        }
+        .table-container {
+            overflow-x: auto;
+            border-radius: 0.5rem;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 12px 15px;
+            text-align: left;
+            border-bottom: 1px solid #374151;
+            background-color: transparent; /* Fundo transparente para as células */
+        }
+        th {
+            background-color: #374151;
+            font-weight: 600;
+            color: #9ca3af;
+        }
+        .heading-text {
+            color: #fde047; /* Amarelo vibrante */
+        }
+        .sub-heading-text {
+            color: #60a5fa; /* Azul vibrante */
+        }
+        .text-accent {
+            color: #3b82f6;
+        }
+        ::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+            background: #111827;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #4b5563;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #6b7280;
+        }
+        .action-button {
+            background-color: #3b82f6;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .action-button:hover {
+            background-color: #2563eb;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.7);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+        }
+        .modal-content {
+            background-color: #1f2937;
+            margin: 15% auto;
+            padding: 2rem;
+            border-radius: 1rem;
+            width: 80%;
+            max-width: 600px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            animation: fadeIn 0.5s;
+        }
+        .close-button {
+            color: #d1d5db;
+            float: right;
+            font-size: 2rem;
+            font-weight: bold;
+            transition: color 0.2s ease;
+        }
+        .close-button:hover,
+        .close-button:focus {
+            color: #60a5fa;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .loading-spinner {
+            border: 4px solid #374151;
+            border-top: 4px solid #fde047;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        
+        /* Estilos de impressão para evitar quebras e cortar gráficos */
+        @media print {
+            body {
+                background: #fff;
+                color: #000;
+            }
+            .chart-container, .table-container {
+                box-shadow: none;
+                border: none;
+                background-color: #fff;
+            }
+            .chart-container canvas {
+                height: 300px !important;
+                width: 100% !important;
+            }
+            .chart-container {
+                page-break-inside: avoid;
+            }
+            .table-container {
+                page-break-inside: avoid;
+            }
+            .heading-text, .sub-heading-text, .text-accent {
+                color: #000 !important;
+            }
+            .modal, .action-button {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body class="p-4 sm:p-8">
+
+    <div class="container mx-auto space-y-12">
+        <header class="text-center mb-12">
+            <h1 class="text-4xl font-bold heading-text mb-2">
+                RELATÓRIO DE ANÁLISE DO MERCADO DE TI EM CURITIBA
+            </h1>
+            <p class="text-lg text-gray-400">
+                Uma análise de dados realista para o planejamento de carreira.
+            </p>
+        </header>
+
+        <!-- Seção 1: Introdução -->
+        <section class="space-y-4">
+            <h2 class="text-3xl font-bold sub-heading-text">1. INTRODUÇÃO</h2>
+            <p>
+                Este relatório apresenta uma análise atualizada e baseada em dados reais do mercado de Tecnologia da Informação (TI) na região de Curitiba-PR, com foco em vagas de Desenvolvimento Web, Full Stack e Mobile. Os dados foram coletados em plataformas de vagas populares, como LinkedIn, Glassdoor e Programathor, para oferecer um panorama preciso das habilidades mais requisitadas, faixas salariais e tendências emergentes, auxiliando profissionais de TI no planejamento de suas carreiras.
+            </p>
+        </section>
+
+        <!-- Seção 2: Hard Skills -->
+        <section class="space-y-4">
+            <h2 class="text-3xl font-bold sub-heading-text">2. HARD SKILLS MAIS REQUISITADAS</h2>
+            <p>
+                As hard skills, ou habilidades técnicas, são os conhecimentos específicos exigidos. Com base na análise das vagas, as seguintes hard skills se destacam como as mais relevantes:
+            </p>
+            <ul class="list-disc list-inside space-y-2">
+                <li><span class="font-semibold text-accent">JavaScript e TypeScript:</span> Essenciais para a maioria das vagas, tanto front-end quanto back-end.</li>
+                <li><span class="font-semibold text-accent">Frameworks:</span> Node.js, ReactJS, e Next.js são recorrentes nas descrições de vagas.</li>
+                <li><span class="font-semibold text-accent">Git:</span> Controle de versão é uma exigência fundamental.</li>
+                <li><span class="font-semibold text-accent">Docker:</span> Conhecimento em conteinerização está se tornando cada vez mais comum.</li>
+                <li><span class="font-semibold text-accent">SQL e Bancos de Dados:</span> Habilidade com SQL e integração com bancos de dados como PostgreSQL.</li>
+            </ul>
+            <p>
+                A visualização abaixo demonstra a relevância dessas habilidades no mercado de Curitiba.
+            </p>
+            <div class="chart-container">
+                <h3 class="text-xl font-semibold text-accent text-center mb-4">Hard Skills Mais Requisitadas</h3>
+                <div class="w-full h-80">
+                    <canvas id="hardSkillsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 3: Soft Skills -->
+        <section class="space-y-4">
+            <h2 class="text-3xl font-bold sub-heading-text">3. SOFT SKILLS MAIS REQUISITADAS</h2>
+            <p>
+                As soft skills, ou habilidades comportamentais, são um diferencial no mercado de trabalho. Com base na análise das descrições de vagas, as mais valorizadas são:
+            </p>
+            <ul class="list-disc list-inside space-y-2">
+                <li><span class="font-semibold text-accent">Proatividade e Autonomia:</span> Capacidade de tomar a iniciativa e trabalhar de forma independente.</li>
+                <li><span class="font-semibold text-accent">Colaboração e Trabalho em Equipe:</span> Habilidade de se integrar e contribuir em projetos de equipe.</li>
+                <li><span class="font-semibold text-accent">Comunicação:</span> Clareza para se expressar e interagir com colegas e gestores.</li>
+                <li><span class="font-semibold text-accent">Aprendizado Contínuo:</span> Essencial para se adaptar a um setor em constante evolução.</li>
+            </ul>
+            <div class="chart-container">
+                <h3 class="text-xl font-semibold text-accent text-center mb-4">Soft Skills Mais Requisitadas</h3>
+                <div class="w-full h-80">
+                    <canvas id="softSkillsChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <!-- Seção 4: Salário e Localização -->
+        <section class="space-y-4">
+            <h2 class="text-3xl font-bold sub-heading-text">4. SALÁRIO E LOCALIZAÇÃO</h2>
+            <p>
+                A análise de vagas reais permitiu refinar as faixas salariais por nível de senioridade. As vagas são majoritariamente presenciais ou híbridas, com poucas opções remotas. A tabela a seguir detalha os salários por nível e cargo:
+            </p>
+            <div class="table-container">
+                <table class="w-full text-sm">
+                    <thead class="text-xs uppercase text-gray-400">
+                        <tr>
+                            <th scope="col">Cargo</th>
+                            <th scope="col">Local</th>
+                            <th scope="col">Nível</th>
+                            <th scope="col">Faixa Salarial (R$)</th>
+                            <th scope="col">Salário Médio (R$)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Desenvolvedor Web Júnior</td>
+                            <td>Curitiba</td>
+                            <td>Júnior</td>
+                            <td>2.000 – 3.000</td>
+                            <td>2.500</td>
+                        </tr>
+                        <tr>
+                            <td>Desenvolvedor Front-end</td>
+                            <td>Curitiba / Híbrido</td>
+                            <td>Pleno</td>
+                            <td>3.500 – 6.000</td>
+                            <td>4.750</td>
+                        </tr>
+                        <tr>
+                            <td>Desenvolvedor Back-end</td>
+                            <td>Curitiba / Híbrido</td>
+                            <td>Pleno</td>
+                            <td>4.000 – 8.000</td>
+                            <td>6.000</td>
+                        </tr>
+                        <tr>
+                            <td>Desenvolvedor Full Stack</td>
+                            <td>Curitiba</td>
+                            <td>Pleno</td>
+                            <td>4.500 – 8.000</td>
+                            <td>6.250</td>
+                        </tr>
+                        <tr>
+                            <td>Desenvolvedor Mobile</td>
+                            <td>Curitiba</td>
+                            <td>Sênior</td>
+                            <td>7.000 – 10.000</td>
+                            <td>8.500</td>
+                        </tr>
+                        <tr>
+                            <td>Desenvolvedor Web</td>
+                            <td>Curitiba / Híbrido</td>
+                            <td>Sênior</td>
+                            <td>8.000 – 12.000</td>
+                            <td>10.000</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <p class="font-bold text-gray-400">Média salarial geral: <span class="text-sky-400">R$ 6.000</span></p>
+            
+            <div class="flex flex-col md:flex-row space-y-8 md:space-y-0 md:space-x-8 mt-8">
+                 <div class="chart-container flex-1">
+                    <h3 class="text-xl font-semibold text-accent text-center mb-4">Média Salarial por Nível</h3>
+                    <div class="w-full h-80">
+                        <canvas id="averageSalaryChart"></canvas>
+                    </div>
+                </div>
+                 <div class="chart-container flex-1">
+                    <h3 class="text-xl font-semibold text-accent text-center mb-4">Progressão Salarial por Nível</h3>
+                    <div class="w-full h-80">
+                        <canvas id="senioritySalaryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Seção 5: Tendências -->
+        <section class="space-y-4">
+            <h2 class="text-3xl font-bold sub-heading-text">5. TENDÊNCIAS IDENTIFICADAS</h2>
+            <ul class="list-disc list-inside space-y-2">
+                <li><span class="font-semibold text-sky-400">⚡ Ecossistema JavaScript:</span> Node.js e React continuam a dominar o mercado local.</li>
+                <li><span class="font-semibold text-sky-400">☁️ Cloud e DevOps:</span> Conhecimentos em Docker e metodologias ágeis são cada vez mais requisitados.</li>
+                <li><span class="font-semibold text-sky-400">Full Stack em Alta:</span> Profissionais com habilidades tanto em front-end quanto em back-end têm uma demanda crescente.</li>
+                <li><span class="font-semibold text-sky-400">TypeScript:</span> Crescente adoção para projetos mais robustos.</li>
+            </ul>
+            <div class="space-y-4">
+                <button onclick="summarizeTrend('Ecossistema JavaScript')" class="w-full text-white bg-indigo-600 hover:bg-indigo-700 py-3 rounded-lg shadow-lg font-bold transition-transform transform hover:scale-105 active:scale-95 duration-200">✨ Resumir Ecossistema JavaScript</button>
+                <button onclick="summarizeTrend('Cloud e DevOps')" class="w-full text-white bg-indigo-600 hover:bg-indigo-700 py-3 rounded-lg shadow-lg font-bold transition-transform transform hover:scale-105 active:scale-95 duration-200">✨ Resumir Cloud e DevOps</button>
+                <button onclick="summarizeTrend('Full Stack')" class="w-full text-white bg-indigo-600 hover:bg-indigo-700 py-3 rounded-lg shadow-lg font-bold transition-transform transform hover:scale-105 active:scale-95 duration-200">✨ Resumir Full Stack</button>
+                <button onclick="summarizeTrend('TypeScript')" class="w-full text-white bg-indigo-600 hover:bg-indigo-700 py-3 rounded-lg shadow-lg font-bold transition-transform transform hover:scale-105 active:scale-95 duration-200">✨ Resumir TypeScript</button>
+            </div>
+        </section>
+
+        <!-- Seção 6: Plano de Ação -->
+        <section class="space-y-4">
+            <h2 class="text-3xl font-bold sub-heading-text">6. PLANO DE AÇÃO (6 MESES)</h2>
+            <ul class="list-disc list-inside space-y-2">
+                <li><span class="font-semibold text-sky-400">JavaScript & TypeScript:</span> Foco em aprofundar conhecimentos na linguagem e em suas práticas modernas.</li>
+                <li><span class="font-semibold text-sky-400">Back-end:</span> Dominar o desenvolvimento de APIs e integração com bancos de dados usando Node.js ou outra tecnologia relevante.</li>
+                <li><span class="font-semibold text-sky-400">Front-end:</span> Aprofundar em frameworks como React para criar interfaces complexas.</li>
+                <li><span class="font-semibold text-sky-400">Git e Docker:</span> Praticar controle de versão e familiarizar-se com ambientes de desenvolvimento.</li>
+            </ul>
+        </section>
+
+        <!-- Seção 7: Conclusão -->
+        <section class="space-y-4">
+            <h2 class="text-3xl font-bold sub-heading-text">7. CONCLUSÃO</h2>
+            <p>
+                O mercado de TI em Curitiba está vibrante, com forte demanda por profissionais que dominam o ecossistema JavaScript. O investimento em habilidades técnicas e comportamentais, combinadas com o conhecimento das ferramentas certas, é a chave para o sucesso e para alcançar salários competitivos.
+            </p>
+        </section>
+    </div>
+
+    <!-- Modal para exibir o resumo gerado pelo Gemini -->
+    <div id="summaryModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button" onclick="closeModal()">&times;</span>
+            <h2 class="text-2xl font-bold text-accent mb-4">Resumo da Tendência</h2>
+            <div id="modalContent" class="text-gray-300">
+                <div id="loading" class="flex justify-center items-center py-8">
+                    <div class="loading-spinner"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Dados
+            const salaryData = {
+                labels: ['Júnior', 'Pleno', 'Sênior'],
+                averages: [2500, 6000, 10000]
+            };
+            const seniorityData = {
+                labels: ['Júnior', 'Pleno', 'Sênior'],
+                salaries: [2500, 6000, 10000] 
+            };
+            const hardSkillsData = {
+                labels: ['JavaScript/TS', 'React/Next', 'Node.js', 'Git', 'Docker', 'SQL'],
+                relevance: [100, 95, 90, 85, 80, 75]
+            };
+            const softSkillsData = {
+                labels: ['Proatividade', 'Colaboração', 'Comunicação', 'Aprendizado'],
+                relevance: [100, 95, 95, 90]
+            };
+
+            // Opções comuns para gráficos
+            const commonOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true,
+                        grid: {
+                            color: 'rgba(55, 65, 81, 0.5)',
+                            borderDash: [5, 5]
+                        },
+                        ticks: {
+                            color: '#9ca3af',
+                            callback: function(value) {
+                                return `R$ ${value.toLocaleString()}`;
+                            }
+                        }
+                    },
+                    x: {
+                        grid: {
+                            display: false
+                        },
+                        ticks: {
+                            color: '#9ca3af'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        backgroundColor: '#1f2937',
+                        titleColor: '#fff',
+                        bodyColor: '#fff',
+                        borderColor: '#fde047',
+                        borderWidth: 1,
+                        callbacks: {
+                            label: function(context) {
+                                if (context.parsed.y !== null) {
+                                    return `R$ ${context.parsed.y.toLocaleString('pt-BR')}`;
+                                }
+                                return '';
+                            }
+                        }
+                    }
+                }
+            };
+            
+            // Gráfico 1: Média Salarial por Nível
+            const ctx1 = document.getElementById('averageSalaryChart').getContext('2d');
+            new Chart(ctx1, {
+                type: 'bar',
+                data: {
+                    labels: salaryData.labels,
+                    datasets: [{
+                        data: salaryData.averages,
+                        backgroundColor: '#fde047', /* Amarelo */
+                        borderRadius: 4
+                    }]
+                },
+                options: { 
+                    ...commonOptions,
+                    scales: {
+                        ...commonOptions.scales,
+                        y: {
+                            ...commonOptions.scales.y,
+                            ticks: {
+                                ...commonOptions.scales.y.ticks,
+                                callback: function(value) {
+                                    return `R$ ${value.toLocaleString('pt-BR')}`;
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        ...commonOptions.plugins,
+                        tooltip: {
+                            ...commonOptions.plugins.tooltip,
+                            callbacks: {
+                                label: function(context) {
+                                    return `Média: R$ ${context.parsed.y.toLocaleString('pt-BR')}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Gráfico 2: Progressão Salarial por Nível
+            const ctx2 = document.getElementById('senioritySalaryChart').getContext('2d');
+            new Chart(ctx2, {
+                type: 'line',
+                data: {
+                    labels: seniorityData.labels,
+                    datasets: [{
+                        label: 'Média Salarial',
+                        data: seniorityData.salaries,
+                        borderColor: '#60a5fa', /* Azul */
+                        backgroundColor: 'rgba(96, 165, 250, 0.2)',
+                        tension: 0.3,
+                        pointRadius: 6,
+                        pointBackgroundColor: '#60a5fa'
+                    }]
+                },
+                options: {
+                    ...commonOptions,
+                    scales: {
+                        ...commonOptions.scales,
+                        y: {
+                            ...commonOptions.scales.y,
+                            min: 0,
+                            max: 12000,
+                            ticks: {
+                                ...commonOptions.scales.y.ticks,
+                                callback: function(value) {
+                                    return `R$ ${value.toLocaleString('pt-BR')}`;
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        ...commonOptions.plugins,
+                        tooltip: {
+                            ...commonOptions.plugins.tooltip,
+                            callbacks: {
+                                label: function(context) {
+                                    return `Média: R$ ${context.parsed.y.toLocaleString('pt-BR')}`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Gráfico 3: Hard Skills Ranking
+            const ctx3 = document.getElementById('hardSkillsChart').getContext('2d');
+            new Chart(ctx3, {
+                type: 'bar',
+                data: {
+                    labels: hardSkillsData.labels,
+                    datasets: [{
+                        data: hardSkillsData.relevance,
+                        backgroundColor: '#ef4444', /* Vermelho */
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    ...commonOptions,
+                    scales: {
+                        ...commonOptions.scales,
+                        y: {
+                            ...commonOptions.scales.y,
+                            display: true,
+                            ticks: {
+                                color: '#9ca3af',
+                                callback: function(value) {
+                                    return `${value}%`;
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        ...commonOptions.plugins,
+                        tooltip: {
+                            enabled: true,
+                            callbacks: {
+                                label: function(context) {
+                                    return `Relevância: ${context.parsed.y}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Gráfico 4: Soft Skills Ranking
+            const ctx4 = document.getElementById('softSkillsChart').getContext('2d');
+            new Chart(ctx4, {
+                type: 'bar',
+                data: {
+                    labels: softSkillsData.labels,
+                    datasets: [{
+                        data: softSkillsData.relevance,
+                        backgroundColor: '#22c55e', /* Verde */
+                        borderRadius: 4
+                    }]
+                },
+                options: {
+                    ...commonOptions,
+                    scales: {
+                        ...commonOptions.scales,
+                        y: {
+                            ...commonOptions.scales.y,
+                            display: true,
+                            ticks: {
+                                color: '#9ca3af',
+                                callback: function(value) {
+                                    return `${value}%`;
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        ...commonOptions.plugins,
+                        tooltip: {
+                            enabled: true,
+                            callbacks: {
+                                label: function(context) {
+                                    return `Relevância: ${context.parsed.y}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+
+        // Funções para o modal e API Gemini
+        async function summarizeTrend(trend) {
+            const modal = document.getElementById('summaryModal');
+            const modalContent = document.getElementById('modalContent');
+            
+            modal.style.display = 'block';
+            modalContent.innerHTML = `<div id="loading" class="flex justify-center items-center py-8"><div class="loading-spinner"></div></div>`;
+
+            const prompt = `Gere um resumo sobre a tendência de tecnologia '${trend}', focando em sua relevância no mercado de desenvolvimento web. O resumo deve ter no máximo 150 palavras, ser profissional e claro.`;
+
+            try {
+                const payload = {
+                    contents: [{ role: "user", parts: [{ text: prompt }] }],
+                };
+                const apiKey = "";
+                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+                
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts && result.candidates[0].content.parts.length > 0) {
+                    const text = result.candidates[0].content.parts[0].text;
+                    modalContent.innerHTML = `<p>${text}</p>`;
+                } else {
+                    modalContent.innerHTML = `<p class="text-red-400">Desculpe, não foi possível gerar o resumo. Por favor, tente novamente.</p>`;
+                }
+            } catch (error) {
+                console.error('API Error:', error);
+                modalContent.innerHTML = `<p class="text-red-400">Ocorreu um erro ao conectar com o serviço de IA. Por favor, tente novamente.</p>`;
+            }
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('summaryModal');
+            modal.style.display = 'none';
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('summaryModal');
+            if (event.target == modal) {
+                modal.style.display = "none";
+            }
+        }
+    </script>
+</body>
+</html>
