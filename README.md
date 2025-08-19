@@ -1,4 +1,5 @@
 📊 Análise do Mercado de TI em Curitiba
+
 Este repositório hospeda um dashboard interativo e dinâmico, que oferece uma análise aprofundada do mercado de Tecnologia da Informação (TI) em Curitiba. Com dados extraídos de vagas reais, este projeto é uma ferramenta completa para profissionais de TI que buscam insights sobre salários, habilidades e tendências do setor.
 
 ✨ Destaques e Funcionalidades
