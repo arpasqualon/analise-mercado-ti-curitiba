@@ -17,7 +17,7 @@
             max-width: 80rem;
         }
         .chart-container {
-            background-color: rgba(31, 41, 55, 0.5); /* Fundo semi-transparente */
+            background-color: rgba(31, 41, 55, 0.5);
             padding: 1.5rem;
             border-radius: 1rem;
             border: 1px solid #374151;
@@ -38,7 +38,7 @@
             padding: 12px 15px;
             text-align: left;
             border-bottom: 1px solid #374151;
-            background-color: transparent; /* Fundo transparente para as células */
+            background-color: transparent;
         }
         th {
             background-color: #374151;
@@ -46,10 +46,10 @@
             color: #9ca3af;
         }
         .heading-text {
-            color: #fde047; /* Amarelo vibrante */
+            color: #fde047;
         }
         .sub-heading-text {
-            color: #60a5fa; /* Azul vibrante */
+            color: #60a5fa;
         }
         .text-accent {
             color: #3b82f6;
@@ -606,6 +606,23 @@
 
             const prompt = `Gere um resumo sobre a tendência de tecnologia '${trend}', focando em sua relevância no mercado de desenvolvimento web. O resumo deve ter no máximo 150 palavras, ser profissional e claro.`;
 
+            // Function to perform the fetch with exponential backoff
+            const fetchWithBackoff = async (url, options, retries = 5, delay = 1000) => {
+                for (let i = 0; i < retries; i++) {
+                    try {
+                        const response = await fetch(url, options);
+                        if (response.status !== 429) { // 429 Too Many Requests
+                            return response;
+                        }
+                        await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
+                    } catch (error) {
+                        if (i === retries - 1) throw error;
+                        await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
+                    }
+                }
+                throw new Error("API call failed after multiple retries");
+            };
+
             try {
                 const payload = {
                     contents: [{ role: "user", parts: [{ text: prompt }] }],
@@ -613,7 +630,7 @@
                 const apiKey = "";
                 const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
                 
-                const response = await fetch(apiUrl, {
+                const response = await fetchWithBackoff(apiUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify(payload)
