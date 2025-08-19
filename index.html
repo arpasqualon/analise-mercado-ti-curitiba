@@ -314,12 +314,6 @@
                 <li><span class="font-semibold text-sky-400">Full Stack em Alta:</span> Profissionais com habilidades tanto em front-end quanto em back-end têm uma demanda crescente.</li>
                 <li><span class="font-semibold text-sky-400">TypeScript:</span> Crescente adoção para projetos mais robustos.</li>
             </ul>
-            <div class="space-y-4">
-                <button onclick="summarizeTrend('Ecossistema JavaScript')" class="w-full text-white bg-indigo-600 hover:bg-indigo-700 py-3 rounded-lg shadow-lg font-bold transition-transform transform hover:scale-105 active:scale-95 duration-200">✨ Resumir Ecossistema JavaScript</button>
-                <button onclick="summarizeTrend('Cloud e DevOps')" class="w-full text-white bg-indigo-600 hover:bg-indigo-700 py-3 rounded-lg shadow-lg font-bold transition-transform transform hover:scale-105 active:scale-95 duration-200">✨ Resumir Cloud e DevOps</button>
-                <button onclick="summarizeTrend('Full Stack')" class="w-full text-white bg-indigo-600 hover:bg-indigo-700 py-3 rounded-lg shadow-lg font-bold transition-transform transform hover:scale-105 active:scale-95 duration-200">✨ Resumir Full Stack</button>
-                <button onclick="summarizeTrend('TypeScript')" class="w-full text-white bg-indigo-600 hover:bg-indigo-700 py-3 rounded-lg shadow-lg font-bold transition-transform transform hover:scale-105 active:scale-95 duration-200">✨ Resumir TypeScript</button>
-            </div>
         </section>
 
         <!-- Seção 6: Plano de Ação -->
@@ -341,20 +335,7 @@
             </p>
         </section>
     </div>
-
-    <!-- Modal para exibir o resumo gerado pelo Gemini -->
-    <div id="summaryModal" class="modal">
-        <div class="modal-content">
-            <span class="close-button" onclick="closeModal()">&times;</span>
-            <h2 class="text-2xl font-bold text-accent mb-4">Resumo da Tendência</h2>
-            <div id="modalContent" class="text-gray-300">
-                <div id="loading" class="flex justify-center items-center py-8">
-                    <div class="loading-spinner"></div>
-                </div>
-            </div>
-        </div>
-    </div>
-
+    
     <!-- Chart.js CDN -->
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
@@ -595,72 +576,6 @@
                 }
             });
         });
-
-        // Funções para o modal e API Gemini
-        async function summarizeTrend(trend) {
-            const modal = document.getElementById('summaryModal');
-            const modalContent = document.getElementById('modalContent');
-            
-            modal.style.display = 'block';
-            modalContent.innerHTML = `<div id="loading" class="flex justify-center items-center py-8"><div class="loading-spinner"></div></div>`;
-
-            const prompt = `Gere um resumo sobre a tendência de tecnologia '${trend}', focando em sua relevância no mercado de desenvolvimento web. O resumo deve ter no máximo 150 palavras, ser profissional e claro.`;
-
-            // Function to perform the fetch with exponential backoff
-            const fetchWithBackoff = async (url, options, retries = 5, delay = 1000) => {
-                for (let i = 0; i < retries; i++) {
-                    try {
-                        const response = await fetch(url, options);
-                        if (response.status !== 429) { // 429 Too Many Requests
-                            return response;
-                        }
-                        await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
-                    } catch (error) {
-                        if (i === retries - 1) throw error;
-                        await new Promise(resolve => setTimeout(resolve, delay * Math.pow(2, i)));
-                    }
-                }
-                throw new Error("API call failed after multiple retries");
-            };
-
-            try {
-                const payload = {
-                    contents: [{ role: "user", parts: [{ text: prompt }] }],
-                };
-                const apiKey = "";
-                const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
-                
-                const response = await fetchWithBackoff(apiUrl, {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify(payload)
-                });
-
-                const result = await response.json();
-                
-                if (result.candidates && result.candidates.length > 0 && result.candidates[0].content && result.candidates[0].content.parts && result.candidates[0].content.parts.length > 0) {
-                    const text = result.candidates[0].content.parts[0].text;
-                    modalContent.innerHTML = `<p>${text}</p>`;
-                } else {
-                    modalContent.innerHTML = `<p class="text-red-400">Desculpe, não foi possível gerar o resumo. Por favor, tente novamente.</p>`;
-                }
-            } catch (error) {
-                console.error('API Error:', error);
-                modalContent.innerHTML = `<p class="text-red-400">Ocorreu um erro ao conectar com o serviço de IA. Por favor, tente novamente.</p>`;
-            }
-        }
-
-        function closeModal() {
-            const modal = document.getElementById('summaryModal');
-            modal.style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            const modal = document.getElementById('summaryModal');
-            if (event.target == modal) {
-                modal.style.display = "none";
-            }
-        }
     </script>
 </body>
 </html>
