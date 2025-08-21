@@ -162,14 +162,15 @@
 </head>
 <body class="p-4 sm:p-8">
 
-    <div class="container mx-auto space-y-12">
-        <header class="text-center mb-12">
-            <h1 class="text-4xl font-bold heading-text mb-2">
-                RELATÓRIO DE ANÁLISE DO MERCADO DE TI EM CURITIBA
-            </h1>
-            <p class="text-lg text-gray-400">
-                Uma análise de dados realista para o planejamento de carreira.
-            </p>
+    <div class="container mx-auto space-y-20"> <!-- Espaçamento aumentado aqui -->
+        <!-- Cabeçalho Acadêmico -->
+        <header class="text-center mb-12 space-y-2">
+            <h1 class="text-2xl font-bold heading-text">Alison Rodrigo Pasqualon</h1>
+            <p class="text-xl text-gray-400">Análise e Desenvolvimento de Sistemas</p>
+            <p class="text-md text-gray-500">RGM: 45504636</p>
+            <p class="text-md text-gray-500">Cruzeiro do Sul Virtual</p>
+            <h2 class="text-3xl font-bold heading-text mt-6">Análise do Mercado de TI em Curitiba</h2>
+            <p class="text-lg text-gray-400 mb-12">Curitiba, 2025</p>
         </header>
 
         <!-- Seção 1: Introdução -->
@@ -309,8 +310,8 @@
         <section class="space-y-4">
             <h2 class="text-3xl font-bold sub-heading-text">5. TENDÊNCIAS IDENTIFICADAS</h2>
             <ul class="list-disc list-inside space-y-2">
-                <li><span class="font-semibold text-sky-400">⚡ Ecossistema JavaScript:</span> Node.js e React continuam a dominar o mercado local.</li>
-                <li><span class="font-semibold text-sky-400">☁️ Cloud e DevOps:</span> Conhecimentos em Docker e metodologias ágeis são cada vez mais requisitados.</li>
+                <li><span class="font-semibold text-sky-400">Ecossistema JavaScript:</span> Node.js e React continuam a dominar o mercado local.</li>
+                <li><span class="font-semibold text-sky-400">Cloud e DevOps:</span> Conhecimentos em Docker e metodologias ágeis são cada vez mais requisitados.</li>
                 <li><span class="font-semibold text-sky-400">Full Stack em Alta:</span> Profissionais com habilidades tanto em front-end quanto em back-end têm uma demanda crescente.</li>
                 <li><span class="font-semibold text-sky-400">TypeScript:</span> Crescente adoção para projetos mais robustos.</li>
             </ul>
@@ -359,6 +360,14 @@
                 relevance: [100, 95, 95, 90]
             };
 
+            // Paleta de cores para os gráficos
+            const chartColors = {
+                primary: '#fde047',
+                secondary: '#60a5fa',
+                tertiary: '#ef4444',
+                quaternary: '#22c55e',
+            };
+            
             // Opções comuns para gráficos
             const commonOptions = {
                 responsive: true,
@@ -394,7 +403,7 @@
                         backgroundColor: '#1f2937',
                         titleColor: '#fff',
                         bodyColor: '#fff',
-                        borderColor: '#fde047',
+                        borderColor: chartColors.primary,
                         borderWidth: 1,
                         callbacks: {
                             label: function(context) {
@@ -416,7 +425,7 @@
                     labels: salaryData.labels,
                     datasets: [{
                         data: salaryData.averages,
-                        backgroundColor: '#fde047', /* Amarelo */
+                        backgroundColor: chartColors.primary,
                         borderRadius: 4
                     }]
                 },
@@ -438,6 +447,7 @@
                         ...commonOptions.plugins,
                         tooltip: {
                             ...commonOptions.plugins.tooltip,
+                            borderColor: chartColors.primary,
                             callbacks: {
                                 label: function(context) {
                                     return `Média: R$ ${context.parsed.y.toLocaleString('pt-BR')}`;
@@ -457,11 +467,11 @@
                     datasets: [{
                         label: 'Média Salarial',
                         data: seniorityData.salaries,
-                        borderColor: '#60a5fa', /* Azul */
+                        borderColor: chartColors.secondary,
                         backgroundColor: 'rgba(96, 165, 250, 0.2)',
                         tension: 0.3,
                         pointRadius: 6,
-                        pointBackgroundColor: '#60a5fa'
+                        pointBackgroundColor: chartColors.secondary
                     }]
                 },
                 options: {
@@ -484,6 +494,7 @@
                         ...commonOptions.plugins,
                         tooltip: {
                             ...commonOptions.plugins.tooltip,
+                            borderColor: chartColors.secondary,
                             callbacks: {
                                 label: function(context) {
                                     return `Média: R$ ${context.parsed.y.toLocaleString('pt-BR')}`;
@@ -502,7 +513,7 @@
                     labels: hardSkillsData.labels,
                     datasets: [{
                         data: hardSkillsData.relevance,
-                        backgroundColor: '#ef4444', /* Vermelho */
+                        backgroundColor: chartColors.tertiary,
                         borderRadius: 4
                     }]
                 },
@@ -525,6 +536,7 @@
                         ...commonOptions.plugins,
                         tooltip: {
                             enabled: true,
+                            borderColor: chartColors.tertiary,
                             callbacks: {
                                 label: function(context) {
                                     return `Relevância: ${context.parsed.y}%`;
@@ -543,7 +555,7 @@
                     labels: softSkillsData.labels,
                     datasets: [{
                         data: softSkillsData.relevance,
-                        backgroundColor: '#22c55e', /* Verde */
+                        backgroundColor: chartColors.quaternary,
                         borderRadius: 4
                     }]
                 },
@@ -566,6 +578,7 @@
                         ...commonOptions.plugins,
                         tooltip: {
                             enabled: true,
+                            borderColor: chartColors.quaternary,
                             callbacks: {
                                 label: function(context) {
                                     return `Relevância: ${context.parsed.y}%`;
