@@ -1,55 +1,94 @@
-📊 Análise do Mercado de TI em Curitiba
+Análise do Mercado de TI em Curitiba
 
-Este repositório hospeda um dashboard interativo e dinâmico, que oferece uma análise aprofundada do mercado de Tecnologia da Informação (TI) em Curitiba. Com dados extraídos de vagas reais, este projeto é uma ferramenta completa para profissionais de TI que buscam insights sobre salários, habilidades e tendências do setor.
+🚀 Sobre o Projeto
+Esta análise oferece um panorama realista do mercado de tecnologia em Curitiba, com foco em planejamento de carreira para vagas de Desenvolvimento Web, Full Stack e Mobile. O objetivo é guiar profissionais sobre quais habilidades técnicas e comportamentais são mais valorizadas na capital paranaense.
 
-✨ Destaques e Funcionalidades
 
-Dados Reais e Atualizados: 
-  As informações de salário e habilidades são baseadas em uma pesquisa minuciosa de vagas abertas no mercado.
+🛠️ Hard Skills Essenciais
+As habilidades técnicas mais requisitadas no mercado curitibano são:
 
-Visualização de Dados Poderosa: 
-  Gráficos interativos criados com Chart.js que transformam dados complexos em uma leitura simples e intuitiva.
 
-Estética de Alta Tecnologia:
-  Um design de dashboard com fundo escuro e cores vibrantes, inspirado em interfaces de sistemas de alta performance.
+JavaScript/TypeScript: Essenciais para a maioria das vagas, tanto no front-end quanto no back-end.
 
-Geração de Resumos com IA:
-  Um recurso inovador que utiliza a API do Google Gemini para gerar resumos de tendências tecnológicas com apenas um clique.
 
-Otimização para Impressão: 
-  A página foi cuidadosamente projetada para ser impressa ou salva em PDF sem cortar os gráficos, mantendo a qualidade visual.
+Frameworks (React & Node.js): ReactJS e Node.js são recorrentes nas descrições de vagas.
 
-100% Responsivo:
-  O layout se adapta perfeitamente a qualquer tela, de desktops a dispositivos móveis.
 
-💻 Tecnologias Utilizadas
+Git: O conhecimento em controle de versão é uma exigência fundamental.
 
-HTML5: Para a estruturação limpa e semântica da página.
 
-CSS3 (com Tailwind CSS): Para um estilo moderno, responsivo e adaptável.
+Docker: A familiaridade com conteinerização é cada vez mais comum e requisitada.
 
-JavaScript: Para a lógica dos gráficos, interatividade e integração com a API.
 
-Chart.js: Biblioteca de código aberto para a criação de gráficos dinâmicos.
+SQL: Habilidade para interagir com bancos de dados como o PostgreSQL é uma competência chave.
 
-Google Gemini API: Utilizado para o recurso de resumo inteligente, trazendo o poder da IA para o seu dashboard.
+💬 Soft Skills Valorizadas
+Além das competências técnicas, as seguintes habilidades comportamentais são cruciais para o sucesso:
 
-🚀 Como Acessar o Dashboard
 
-Clone o Repositório:
-Abra o terminal e execute o comando:
+Proatividade e Autonomia: Capacidade de tomar iniciativa e trabalhar de forma independente.
 
-git clone https://github.com/arpasqualon/analise-mercado-ti-curitiba.git
 
-Abra o Arquivo:
+Colaboração: Habilidade de se integrar e contribuir em projetos de equipe.
 
-Navegue até a pasta do projeto e abra o arquivo index.html no seu navegador web preferido. Não precisa de servidor local!
 
-🤝 Contribuição
+Comunicação: Clareza para interagir com colegas e gestores.
 
-Sua contribuição é muito bem-vinda! Se você tiver sugestões de melhoria, encontrar um bug ou quiser adicionar novas funcionalidades, sinta-se à vontade para abrir uma issue ou enviar um pull request.
 
-⚖️ Licença
-Este projeto está sob a licença MIT License, garantindo liberdade de uso, modificação e distribuição.
+Aprendizado Contínuo: Essencial para se adaptar às constantes evoluções do setor de tecnologia.
 
-Desenvolvido com excelência e paixão pela tecnologia. Esperamos que seja útil para a sua jornada profissional! 😊
+💰 Faixas Salariais em Curitiba
+A remuneração varia de acordo com o cargo e o nível de senioridade. A média salarial geral identificada na análise é de 
+
+R$ 6.000.
+
+Cargo	Nível	Faixa Salarial (R$)
+Desenvolvedor Web	Júnior	
+R$ 2.000 - R$ 3.000 
+
+Desenvolvedor Front-end	Pleno	
+R$ 3.500 - R$ 6.000 
+
+Desenvolvedor Back-end	Pleno	
+R$ 4.000 - R$ 8.000 
+
+Desenvolvedor Full Stack	Pleno	
+R$ 4.500 - R$ 8.000 
+
+Desenvolvedor Mobile	Sênior	
+R$ 7.000 - R$ 10.000 
+
+Desenvolvedor Web	Sênior	
+R$ 8.000 - R$ 12.000 
+
+
+Exportar para as Planilhas
+📈 Tendências de Mercado
+As principais tendências para os próximos anos apontam para:
+
+
+Domínio do Ecossistema JavaScript: Node.js e React continuam liderando a demanda do mercado local.
+
+
+Crescimento de DevOps/Cloud: Conhecimentos em Docker e metodologias ágeis são cada vez mais requisitados.
+
+
+Alta para Full Stack: A demanda por profissionais que atuam tanto no front-end quanto no back-end é crescente.
+
+
+Adoção de TypeScript: A linguagem vem sendo cada vez mais utilizada em projetos que exigem maior robustez e manutenibilidade.
+
+🎯 Plano de Ação Sugerido (6 Meses)
+Um plano de estudos focado para se destacar no mercado, baseado nas tendências identificadas:
+
+
+Meses 1-2: Foco total em JavaScript e TypeScript, aprofundando os conhecimentos na linguagem e suas práticas modernas.
+
+
+Meses 3-4: Dividir o foco entre Front-end (aprofundar em frameworks como React para criar interfaces complexas) e Back-end (dominar a criação de APIs e integração com bancos de dados usando Node.js).
+
+
+Meses 5-6: Praticar intensivamente Git para controle de versão e familiarizar-se com Docker para criar e gerenciar ambientes de desenvolvimento.
+
+✅ Conclusão
+O mercado de TI em Curitiba está vibrante e aquecido, com forte demanda por profissionais que dominam o ecossistema JavaScript. O sucesso na área depende de uma combinação estratégica de habilidades técnicas (com ênfase em Full Stack), comportamentais (soft skills) e a dedicação ao aprendizado contínuo para acompanhar as tendências do setor.
